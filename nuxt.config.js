@@ -63,5 +63,9 @@ export default {
       '@storybook/addon-knobs',
       '@storybook/addon-actions',
     ],
+    parameters: {
+      actions: { argTypesRegex: '.*' },
+      layout: 'fullscreen',
+    },
   },
 }
