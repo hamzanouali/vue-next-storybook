@@ -58,6 +58,10 @@ export default {
   build: {},
 
   storybook: {
-    addons: ['@storybook/addon-knobs'],
+    addons: [
+      '@storybook/addon-essentials',
+      '@storybook/addon-knobs',
+      '@storybook/addon-actions',
+    ],
   },
 }

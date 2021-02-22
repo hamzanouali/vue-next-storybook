@@ -1,5 +1,5 @@
 <template>
-  <div v-show="toggle" ref="chat" class="chat">
+  <div v-show="toggle" class="chat">
     <button class="chat__close-btn btn" @click="$emit('close')">
       <svg
         width="1em"
@@ -17,27 +17,28 @@
     <!-- Header -->
     <div class="chat__header d-flex">
       <span class="chat__img-container">
-        <img class="chat__img-avatar" :src="theAvatarUrl" :alt="theAvatarAlt" />
+        <img class="chat__img-avatar" :src="avatarUrl" :alt="avatarAlt" />
       </span>
       <div class="chat__header-info flex-grow-1">
-        <p class="chat__full-name">{{ theFullName }}</p>
-        <span class="chat__job-title d-block">{{ theJobTitle }}</span>
+        <p class="chat__full-name">{{ fullName }}</p>
+        <span class="chat__job-title d-block">{{ jobTitle }}</span>
       </div>
     </div>
     <!-- Body -->
     <div class="chat__body">
-      <p class="chat__paragraph">{{ theParagraphe }}</p>
+      <p class="chat__paragraph">{{ paragraphe }}</p>
     </div>
     <!-- Footer -->
-    <div class="chat__footer d-flex">
+    <form class="chat__footer d-flex" @submit.prevent="$emit('submit')">
       <input
-        v-model="message"
+        :value="value.length ? value : ''"
         type="text"
         class="chat__input flex-grow-1"
-        :placeholder="theInputPlaceholder"
+        :placeholder="inputPlaceholder"
+        @input="$emit('input', $event.target.value)"
       />
-      <button class="chat__btn btn">{{ theButtonLabel }}</button>
-    </div>
+      <button class="chat__btn btn">{{ buttonLabel }}</button>
+    </form>
   </div>
 </template>
 <script>
@@ -77,35 +78,10 @@ export default {
       type: Boolean,
       required: true,
     },
-  },
-
-  data() {
-    return {
-      message: null,
-    }
-  },
-
-  computed: {
-    theAvatarUrl() {
-      return this.avatarUrl
-    },
-    theAvatarAlt() {
-      return this.avatarAlt
-    },
-    theFullName() {
-      return this.fullName
-    },
-    theJobTitle() {
-      return this.jobTitle
-    },
-    theParagraphe() {
-      return this.paragraphe
-    },
-    theInputPlaceholder() {
-      return this.inputPlaceholder
-    },
-    theButtonLabel() {
-      return this.buttonLabel
+    value: {
+      type: String,
+      required: false,
+      default: '',
     },
   },
 }

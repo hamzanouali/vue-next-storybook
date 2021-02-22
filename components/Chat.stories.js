@@ -4,17 +4,16 @@ import Chat from './Chat.vue'
 export default {
   title: 'Components/Chat',
   component: Chat,
-  parameters: { actions: { argTypesRegex: '^on.*' } },
   decorators: [
     () => ({
       template:
-        '<div class="w-100 d-flex justify-content-center align-content-center" style="background: #FAEFE3; padding: 6rem 0;"><div style="max-width: 375px; width: 100%;"><story /></div></div>',
+        '<div class="w-100 d-flex justify-content-center align-content-center" style="background: #FAEFE3; padding: 6rem 0;"><div style="max-width: 375px; width: 100%;" class="px-3 px-lg-0"><story /></div></div>',
     }),
   ],
 }
 
-const Template = (args) => ({
-  props: Object.keys(args),
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { Chat },
   data() {
     return {
@@ -26,7 +25,9 @@ const Template = (args) => ({
       this.dataToggle = value
     },
   },
-  template: `<Chat :toggle="dataToggle" v-bind="$props" @close="dataToggle = false" />`,
+  template: `
+    <Chat @close="close" @input="input" @submit="submit" :toggle="dataToggle" v-bind="$props" />
+  `,
 })
 
 export const Default = Template.bind({})
