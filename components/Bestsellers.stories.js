@@ -2,11 +2,11 @@ import imageFile1 from '../static/images/image-1.png'
 import imageFile2 from '../static/images/image-2.png'
 import imageFile3 from '../static/images/image-3.png'
 
-import ProductsCard from './ProductsCard.vue'
+import Bestsellers from './Bestsellers.vue'
 
 export default {
-  title: 'Components/ProductsCard',
-  component: ProductsCard,
+  title: 'Components/Bestsellers',
+  component: Bestsellers,
   decorators: [
     () => ({
       template:
@@ -17,11 +17,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { ProductsCard },
+  components: { Bestsellers },
   template: `
-    <ProductsCard v-on="$listeners" v-bind="$props">
+    <Bestsellers v-on="$listeners" v-bind="$props">
       <template #headline>Bestsellers</template>
-    </ProductsCard>
+    </Bestsellers>
   `,
 })
 
